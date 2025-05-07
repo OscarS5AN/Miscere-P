@@ -1,0 +1,102 @@
+/* Estilos específicos para la página de métodos de pago */
+
+.payment-summary {
+    margin-bottom: 24px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.summary-row.total {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #e0e0e0;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.summary-value {
+    font-weight: 500;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    color: var(--text-color);
+}
+
+.payment-methods {
+    margin-bottom: 24px;
+}
+
+.payment-form {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    transition: all 0.3s ease;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.cash-info, .nequi-info {
+    text-align: center;
+    padding: 16px;
+}
+
+.cash-options {
+    display: flex;
+    justify-content: space-around;
+    margin: 24px 0;
+}
+
+.cash-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cash-option i {
+    font-size: 32px;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+}
+
+.cash-note {
+    font-size: 14px;
+    color: #666;
+    margin-top: 16px;
+}
+
+.nequi-logo {
+    font-size: 48px;
+    margin: 24px 0;
+    color: #EB2F7E; /* Color Nequi */
+}
+
+.actions {
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+    padding: 16px 0;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+}
+
+/* Animaciones para los formularios */
+.payment-form.show {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

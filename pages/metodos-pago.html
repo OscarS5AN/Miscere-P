@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métodos de Pago - Miscere</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/metodos-pago.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <button class="back-button" onclick="history.back()">←</button>
+            <h1 class="page-title">Elige el método de pago</h1>
+        </header>
+
+        <div class="payment-summary card">
+            <div class="summary-row">
+                <span>Subtotal:</span>
+                <span class="summary-value" id="subtotal">$0.00</span>
+            </div>
+            <div class="summary-row">
+                <span>Impuestos (19%):</span>
+                <span class="summary-value" id="impuestos">$0.00</span>
+            </div>
+            <div class="summary-row">
+                <span>Envío:</span>
+                <span class="summary-value" id="envio">Gratis</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total a pagar:</span>
+                <span class="summary-value" id="total">$0.00</span>
+            </div>
+        </div>
+
+        <div class="payment-methods">
+            <h2 class="section-title">Selecciona un método de pago</h2>
+            
+            <div class="option-card" data-payment-method="tarjeta">
+                <div class="option-card-left">
+                    <i class="fas fa-credit-card option-card-icon"></i>
+                    <span>Tarjeta de Crédito/Débito</span>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+
+            <div class="option-card" data-payment-method="pse">
+                <div class="option-card-left">
+                    <i class="fas fa-university option-card-icon"></i>
+                    <span>PSE - Pago en línea</span>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+
+            <div class="option-card" data-payment-method="efectivo">
+                <div class="option-card-left">
+                    <i class="fas fa-money-bill-wave option-card-icon"></i>
+                    <span>Pago en efectivo</span>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+
+            <div class="option-card" data-payment-method="nequi">
+                <div class="option-card-left">
+                    <i class="fas fa-mobile-alt option-card-icon"></i>
+                    <span>Nequi</span>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+
+        <!-- Formulario de tarjeta de crédito (inicialmente oculto) -->
+        <div id="card-form" class="payment-form" style="display: none;">
+            <h2 class="section-title">Detalles de la tarjeta</h2>
+            
+            <div class="form-group">
+                <label class="form-label" for="card-number">Número de tarjeta</label>
+                <input type="text" id="card-number" class="form-control" placeholder="1234 5678 9012 3456">
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="expiry-date">Fecha de expiración</label>
+                    <input type="text" id="expiry-date" class="form-control" placeholder="MM/AA">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="cvv">CVV</label>
+                    <input type="text" id="cvv" class="form-control" placeholder="123">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="card-name">Nombre en la tarjeta</label>
+                <input type="text" id="card-name" class="form-control" placeholder="NOMBRE APELLIDO">
+            </div>
+        </div>
+
+        <!-- Formulario de PSE (inicialmente oculto) -->
+        <div id="pse-form" class="payment-form" style="display: none;">
+            <h2 class="section-title">Pago por PSE</h2>
+            
+            <div class="form-group">
+                <label class="form-label" for="bank-select">Selecciona tu banco</label>
+                <select id="bank-select" class="form-control">
+                    <option value="">Selecciona un banco</option>
+                    <option value="bancolombia">Bancolombia</option>
+                    <option value="davivienda">Davivienda</option>
+                    <option value="bbva">BBVA</option>
+                    <option value="bancodebogota">Banco de Bogotá</option>
+                    <option value="colpatria">Scotiabank Colpatria</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="doc-type">Tipo de documento</label>
+                <select id="doc-type" class="form-control">
+                    <option value="">Selecciona tipo de documento</option>
+                    <option value="cc">Cédula de Ciudadanía</option>
+                    <option value="ce">Cédula de Extranjería</option>
+                    <option value="nit">NIT</option>
+                    <option value="pasaporte">Pasaporte</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="doc-number">Número de documento</label>
+                <input type="text" id="doc-number" class="form-control" placeholder="1234567890">
+            </div>
+        </div>
+
+        <!-- Formulario de pago en efectivo (inicialmente oculto) -->
+        <div id="efectivo-form" class="payment-form" style="display: none;">
+            <h2 class="section-title">Pago en efectivo</h2>
+            
+            <div class="cash-info">
+                <p>Genera un cupón de pago para presentar en:</p>
+                <div class="cash-options">
+                    <div class="cash-option">
+                        <i class="fas fa-store"></i>
+                        <span>Efecty</span>
+                    </div>
+                    <div class="cash-option">
+                        <i class="fas fa-store"></i>
+                        <span>Baloto</span>
+                    </div>
+                    <div class="cash-option">
+                        <i class="fas fa-store"></i>
+                        <span>Corresponsal Bancario</span>
+                    </div>
+                </div>
+                <p class="cash-note">El código de pago se generará al confirmar tu pedido</p>
+            </div>
+        </div>
+
+        <!-- Formulario de Nequi (inicialmente oculto) -->
+        <div id="nequi-form" class="payment-form" style="display: none;">
+            <h2 class="section-title">Pago con Nequi</h2>
+            
+            <div class="form-group">
+                <label class="form-label" for="phone-number">Número de celular</label>
+                <input type="text" id="phone-number" class="form-control" placeholder="300 123 4567">
+            </div>
+            
+            <div class="nequi-info">
+                <p>Recibirás una notificación en tu app de Nequi para confirmar el pago.</p>
+                <div class="nequi-logo">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button id="continue-btn" class="btn" disabled>Continuar</button>
+            
+        </div>
+    </div>
+
+    <script src="../js/metodos-pago.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+/* Estilos específicos para la página de confirmación de pedido */
+
+.confirmation-header {
+    text-align: center;
+    margin-bottom: 24px;
+    padding: 24px 0;
+    background-color: #f0f8ff;
+    border-radius: 8px;
+}
+
+.success-icon {
+    font-size: 64px;
+    color: var(--success-color);
+    margin-bottom: 16px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.confirmation-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--success-color);
+}
+
+.confirmation-message {
+    font-size: 16px;
+    color: #666;
+}
+
+.order-summary {
+    margin-bottom: 24px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+    font-weight: 700;
+}
+
+.summary-value {
+    font-weight: 500;
+}
+
+.delivery-info {
+    margin-bottom: 24px;
+}
+
+.delivery-address {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+}
+
+.address-icon {
+    font-size: 24px;
+    color: var(--primary-color);
+    margin-right: 16px;
+    padding-top: 4px;
+}
+
+.address-details h3 {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.address-details p {
+    margin: 2px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.delivery-status {
+    padding-top: 8px;
+}
+
+.status-step {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.status-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+    color: #999;
+    font-size: 14px;
+}
+
+.status-step.completed .status-icon {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.status-text h4 {
+    font-size: 14px;
+    margin-bottom: 8px;
+}

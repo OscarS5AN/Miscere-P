@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de Factura - Miscere</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/detalles-factura.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <button class="back-button" onclick="history.back()">←</button>
+            <h1 class="page-title">Detalle de factura</h1>
+        </header>
+
+        <div class="invoice-details card">
+            <div class="invoice-header">
+                <div class="company-info">
+                    <h2>Miscere</h2>
+                    <p>NIT: 900.123.456-7</p>
+                    <p>Calle 123 # 45-67, Cali</p>
+                    <p>Valle del Cauca, Colombia</p>
+                </div>
+                <div class="invoice-number">
+                    <h3>Factura de venta</h3>
+                    <p>No: <span id="invoice-number">--</span></p>
+                    <p>Fecha: <span id="invoice-date">--</span></p>
+                </div>
+            </div>
+
+            <div class="customer-info">
+                <h3>Cliente</h3>
+                <p>Nombre: <span id="customer-name">--</span></p>
+                <p>Documento: <span id="customer-document">--</span></p>
+                <p>Dirección: <span id="customer-address">--</span></p>
+                <p>Teléfono: <span id="customer-phone">--</span></p>
+            </div>
+
+            <div class="order-details">
+                <h3>Detalle del pedido</h3>
+                <table class="order-table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cant.</th>
+                            <th>Precio</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="order-items">
+                        <!-- Los items se cargarán dinámicamente desde JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="payment-summary">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span class="summary-value" id="subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Impuestos (19%):</span>
+                    <span class="summary-value" id="impuestos">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Envío:</span>
+                    <span class="summary-value" id="envio">Gratis</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span class="summary-value" id="total">$0.00</span>
+                </div>
+            </div>
+
+            <div class="payment-method-info">
+                <h3>Método de pago</h3>
+                <div id="payment-method-details">
+                    <!-- Los detalles del método de pago se cargarán dinámicamente -->
+                </div>
+            </div>
+
+            <div class="terms-conditions">
+                <h3>Términos y condiciones</h3>
+                <p>Esta factura constituye título valor según la ley colombiana. El plazo máximo para reclamos es de 5 días después de recibida. La firma del cliente o representante confirma la recepción a satisfacción de los productos detallados.</p>
+            </div>
+        </div>
+
+        <div class="invoice-actions">
+            <button id="download-invoice" class="btn">
+                <i class="fas fa-download"></i> Descargar factura PDF
+            </button>
+            <button id="continue-btn" class="btn">Confirmar pedido</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="../js/detalles-factura.js"></script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+/* Estilos específicos para la página de detalles de factura */
+
+.invoice-details {
+    margin-bottom: 24px;
+    padding: 20px;
+}
+
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+}
+
+.company-info h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+}
+
+.company-info p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+.invoice-number h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+}
+
+.invoice-number p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+.customer-info {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.customer-info h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+}
+
+.customer-info p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+.order-details {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.order-details h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: var(--primary-color);
+}
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.order-table th, .order-table td {
+    padding: 8px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.order-table th {
+    background-color: #f5f5f5;
+}
+
+.order-table th:last-child, .order-table td:last-child {
+    text-align: right;
+}
+
+.order-table th:nth-child(2), .order-table td:nth-child(2) {
+    text-align: center;
+}
+
+.order-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.payment-summary {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.summary-row.total {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #e0e0e0;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.summary-value {
+    font-weight: 500;
+}
+
+.payment-method-info {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.payment-method-info h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+}
+
+.payment-detail {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.payment-detail-label {
+    font-weight: 500;
+}
+
+.terms-conditions h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+}
+
+.terms-conditions p {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.4;
+}
+
+.invoice-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+#download-invoice {
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+#download-invoice i {
+    margin-right: 8px;
+}
+
+/* Estilo para imprimir/PDF */
+@media print {
+    .back-button, .invoice-actions {
+        display: none;
+    }
+    
+    .container {
+        padding: 0;
+        box-shadow: none;
+    }
+    
+    .invoice-details {
+        border: 1px solid #ddd;
+    }
+}.order-summary p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+.order-summary .total {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .invoice-header {
+        flex-direction: column;
+    }
+    
+    .invoice-number {
+        margin-top: 16px;
+    }
+    
+    .order-table {
+        font-size: 12px;
+    }
+    
+    .order-table th, .order-table td {
+        padding: 6px 4px;
+    }
+}
