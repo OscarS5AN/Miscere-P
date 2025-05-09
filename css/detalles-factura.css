@@ -182,7 +182,9 @@
     .invoice-details {
         border: 1px solid #ddd;
     }
-}.order-summary p {
+}
+
+.order-summary p {
     margin: 5px 0;
     font-size: 1rem;
 }

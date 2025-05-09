@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const orderItemsContainer = document.getElementById('order-items');
     productosData.forEach(producto => {
         const row = document.createElement('tr');
-        row.innerHTML = `
+        row.innerHTML = `        
             <td>${producto.nombre}</td>
             <td>${producto.cantidad}</td>
             <td>${formatCurrency(producto.precio)}</td>
@@ -59,11 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mostrar detalles del método de pago
     const paymentMethodDetails = document.getElementById('payment-method-details');
     renderPaymentMethodDetails(paymentMethod, paymentMethodDetails);
-    
-    // Evento para descargar factura en PDF
-    document.getElementById('download-invoice').addEventListener('click', function() {
-        generatePDF();
-    });
     
     // Evento para continuar al siguiente paso
     document.getElementById('continue-btn').addEventListener('click', function() {
@@ -196,31 +191,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // Función para generar código de pago (simulación)
     function generatePaymentCode() {
         return Math.random().toString(36).substring(2, 8).toUpperCase();
-    }
-    
-    // Función para generar PDF de la factura
-    function generatePDF() {
-        const { jsPDF } = window.jspdf;
-        
-        // Clonar el elemento de la factura para manipularlo
-        const invoiceElement = document.querySelector('.invoice-details').cloneNode(true);
-        
-        // Ocultar los botones de acción en el PDF
-        const actions = document.querySelectorAll('.invoice-actions');
-        actions.forEach(action => action.style.display = 'none');
-        
-        // Crear el PDF
-        html2canvas(invoiceElement).then(canvas => {
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jsPDF('p', 'mm', 'a4');
-            const width = pdf.internal.pageSize.getWidth();
-            const height = canvas.height * width / canvas.width;
-            
-            pdf.addImage(imgData, 'PNG', 0, 0, width, height);
-            pdf.save(`factura_${document.getElementById('invoice-number').textContent}.pdf`);
-            
-            // Restaurar visualización de los botones
-            actions.forEach(action => action.style.display = 'flex');
-        });
     }
 });

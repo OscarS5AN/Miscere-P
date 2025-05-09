@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Simular datos del pedido (normalmente vendrían de la base de datos)
+    // Simular datos del pedido
     const pedidoData = {
         subtotal: 85000,
-        impuestos: 16150, // 19% del subtotal
-        envio: 0,         // Gratis
-        total: 101150     // Subtotal + impuestos + envío
+        impuestos: 16150,
+        envio: 0,
+        total: 101150
     };
 
     // Mostrar los valores del resumen
@@ -16,41 +16,53 @@ document.addEventListener('DOMContentLoaded', function() {
     let selectedPaymentMethod = null;
     const continueBtn = document.getElementById('continue-btn');
     
-    // Evento para todas las tarjetas de opciones de pago
+    // Evento para las tarjetas de opciones de pago
     const paymentOptions = document.querySelectorAll('.option-card');
     paymentOptions.forEach(option => {
         option.addEventListener('click', function() {
             const method = this.getAttribute('data-payment-method');
-            selectPaymentMethod(method);
+            const form = this.parentElement.querySelector('.payment-form');
+            const arrow = this.querySelector('.option-arrow');
+            
+            // Si ya está seleccionado, deseleccionar
+            if (selectedPaymentMethod === method) {
+                form.style.display = 'none';
+                arrow.classList.remove('fa-chevron-down');
+                arrow.classList.add('fa-chevron-right');
+                this.classList.remove('selected');
+                selectedPaymentMethod = null;
+                continueBtn.setAttribute('disabled', true);
+                return;
+            }
+            
+            // Cerrar todos los demás formularios
+            document.querySelectorAll('.payment-form').forEach(f => {
+                f.style.display = 'none';
+            });
+            
+            // Resetear todas las flechas
+            document.querySelectorAll('.option-arrow').forEach(a => {
+                a.classList.remove('fa-chevron-down');
+                a.classList.add('fa-chevron-right');
+            });
             
             // Remover clase "selected" de todas las opciones
             paymentOptions.forEach(opt => opt.classList.remove('selected'));
             
-            // Agregar clase "selected" solo a la opción elegida
+            // Mostrar el formulario seleccionado y cambiar la flecha
+            form.style.display = 'block';
+            arrow.classList.remove('fa-chevron-right');
+            arrow.classList.add('fa-chevron-down');
             this.classList.add('selected');
-            
-            // Habilitar el botón Continuar
+            selectedPaymentMethod = method;
             continueBtn.removeAttribute('disabled');
         });
     });
 
-    // Función para seleccionar un método de pago
-    function selectPaymentMethod(method) {
-        selectedPaymentMethod = method;
-        
-        // Ocultar todos los formularios
-        document.querySelectorAll('.payment-form').forEach(form => {
-            form.style.display = 'none';
-        });
-        
-        // Mostrar el formulario correspondiente
-        const formId = `${method}-form`;
-        const form = document.getElementById(formId);
-        if (form) {
-            form.style.display = 'block';
-            form.classList.add('show');
-        }
-    }
+    // Inicialmente ocultar todos los formularios
+    document.querySelectorAll('.payment-form').forEach(form => {
+        form.style.display = 'none';
+    });
 
     // Evento para el botón continuar
     continueBtn.addEventListener('click', function() {
@@ -124,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         if (isValid) {
-            // Guardar los detalles del método de pago en sessionStorage para usarlos en la siguiente pantalla
+            // Guardar los detalles del método de pago
             sessionStorage.setItem('paymentMethod', JSON.stringify(paymentDetails));
             sessionStorage.setItem('pedidoData', JSON.stringify(pedidoData));
             
@@ -146,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (value.length > 0) {
                 value = value.match(new RegExp('.{1,4}', 'g')).join(' ');
             }
-            e.target.value = value.substring(0, 19); // Limitar a 16 dígitos (19 con espacios)
+            e.target.value = value.substring(0, 19);
         });
     }
 
@@ -158,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (value.length > 2) {
                 value = value.substring(0, 2) + '/' + value.substring(2, 4);
             }
-            e.target.value = value.substring(0, 5); // Formato MM/AA
+            e.target.value = value.substring(0, 5);
         });
     }
 
@@ -180,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else if (value.length > 6) {
                 value = value.substring(0, 3) + ' ' + value.substring(3, 6) + ' ' + value.substring(6, 10);
             }
-            e.target.value = value.substring(0, 12); // 10 dígitos + 2 espacios
+            e.target.value = value.substring(0, 12);
         });
     }
 });
