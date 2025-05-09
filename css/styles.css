@@ -86,7 +86,11 @@
     width: 100%;
     font-weight: 500;
   }
-  
+   
+  .btn + .btn {
+    margin-top: 16px; /* Espacio entre botones consecutivos */
+  }
+
   .btn:hover {
     background-color: #5000d1;
   }

@@ -3,31 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal</title>
+    <title>Inicio - Miscere</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Bienvenido a Nuestra Tienda</h1>
-        <nav>
-            <ul>
-                <li><a href="productos.html">Productos</a></li>
-                <li><a href="carrito.html">Carrito</a></li>
-                <li><a href="confirmacion-pedido.html">Confirmación de Pedido</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="container">
+        <header>
+            <h1>Bienvenido a Miscere</h1>
+        </header>
 
-    <main>
-        <section>
-            <h2>Ofertas Especiales</h2>
-            <p>Explora nuestras ofertas y descuentos exclusivos.</p>
-            <a href="productos.html" class="button">Ver Productos</a>
-        </section>
-    </main>
+        <main>
+            <section class="products">
+                <h2>Nuestros Productos</h2>
+                <p>Explora nuestra selección de productos exclusivos.</p>
+                <!-- Aquí podrías listar productos dinámicamente -->
+            </section>
 
-    <footer>
-        <p>&copy; 2025 Nuestra Tienda. Todos los derechos reservados.</p>
-    </footer>
+            <div class="actions">
+                <!-- Botón Comprar -->
+                <button id="buy-button" class="btn">
+                    Comprar
+                </button>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Miscere. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Redirigir al usuario a la página de métodos de pago al hacer clic en el botón
+        document.getElementById('buy-button').addEventListener('click', function () {
+            window.location.href = 'pages/metodos-pago.html';
+        });
+    </script>
 </body>
 </html>
