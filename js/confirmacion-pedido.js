@@ -13,8 +13,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+    // Generar un número de pedido único basado en la fecha y un identificador aleatorio
+    const orderNumber = generateOrderNumber();
+
     // Mostrar datos del pedido
-    document.getElementById('order-number').textContent = facturaData.numero;
+    document.getElementById('order-number').textContent = orderNumber;
     document.getElementById('invoice-number').textContent = facturaData.numero;
     document.getElementById('order-date').textContent = facturaData.fecha;
     document.getElementById('order-total').textContent = formatCurrency(facturaData.resumen.total);
@@ -33,6 +36,18 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('continue-shopping').addEventListener('click', function () {
         window.location.href = '../index.html';
     });
+
+    // Función para generar un número de pedido único
+    function generateOrderNumber() {
+        const prefix = 'ORD';
+        const date = new Date();
+        const year = date.getFullYear().toString().substr(-2);
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+
+        return `${prefix}-${year}${month}${day}-${random}`;
+    }
 
     // Función para formatear valores como moneda (COP)
     function formatCurrency(value) {
